@@ -5,7 +5,7 @@ import numpy as np
 from openai import OpenAI
 
 model = pickle.load(open('classifier1.pkl','rb'))
-client = OpenAI(api_key = "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") ; 
+client = OpenAI(api_key = "ENTER YOUR OWN OPENAI API KEY") ; 
 
 app = Flask(__name__)
 # Initialize the OpenAI client (new way)
