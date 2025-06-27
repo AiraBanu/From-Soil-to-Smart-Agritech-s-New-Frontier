@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fertilizer Recommendation System</title>
+    <link rel="stylesheet" type="text/css" href="static\fpredictor.css">
+</head>
+<body>
+    <div id = "input"> 
+    <h1 style="color : white;  font-family: Garamond ;">Fertilizer Recommendation System</h1>
+
+    <form method="post" action="/predict" onsubmit="return validateForm()">
+        <div class = "formelements">
+        <label>Nitrogen</label>
+        <input type="text" name="Nitrogen">
+    </div>
+         
+        <div class = "formelements">
+        <label>Potassium</label>
+        <input type="text" name="Potassium">
+        </div>
+  
+        <div class = "formelements">
+        <label>Phosphorous</label>
+        <input type="text" name="Phosphorous">
+        </div>
+         
+        <div>
+        <input id = "calc" type="submit" value="Predict">
+        </div>
+        <div id = "output">
+        {% if result %}
+        <p class = "value">{{ result }}</p>
+        
+    {% endif %}
+        </div>
+    </form>
+</div>
+
+</body>
+
+
+<script>
+    function validateForm() {
+        var nitrogen = document.getElementsByName("Nitrogen")[0].value;
+        var potassium = document.getElementsByName("Potassium")[0].value;
+        var phosphorous = document.getElementsByName("Phosphorous")[0].value;
+
+        if (nitrogen === '' || potassium === '' || phosphorous === '') {
+            alert("Please fill in all fields");
+            return false;
+        }
+
+        // Form is valid, allow submission
+        return true;
+    }
+</script>
+</html>

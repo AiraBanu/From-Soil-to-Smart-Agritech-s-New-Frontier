@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Weather Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f7e6;
+            color: #2c5014;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        #weatherbackground {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        #location {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .current-temp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .w-icon {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .weather-description {
+            font-size: 1.5em;
+            text-transform: capitalize;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .farming-tips {
+            background: #ffffff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .farming-tips h2 {
+            color: #2c5014;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #7cb342;
+            padding-bottom: 5px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            background: linear-gradient(145deg, #ffffff, #f0f7e6);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid-item h3 {
+            color: #2c5014;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .grid-item .w-icon {
+            width: 60px;
+            height: 60px;
+            margin: 10px 0;
+        }
+
+        .grid-item h4 {
+            color: #1b5e20;
+            font-size: 1.5em;
+            margin: 5px 0;
+        }
+
+        .min-temp {
+            color: #689f38;
+            font-size: 1.1em;
+        }
+
+        .weather-alert {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            #location {
+                font-size: 2em;
+            }
+            .current-temp {
+                font-size: 2.5em;
+            }
+            .grid-container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="weatherbackground" src="static/Weather-Images/farm-field.jpg" alt="Farm Field">
+        <div class="content">
+            <h3 id="location">Loading location...</h3>
+            <div id="current-weather"></div>
+        </div>
+    </div>
+
+    <div class="farming-tips">
+        <h2><i class="fas fa-seedling"></i> Today's Farming Tips</h2>
+        <div id="farming-advice">
+        Plant early-maturing crops before the monsoon to avoid flood damage.
+
+        Use drip irrigation during dry spells to conserve water and keep soil moisture stable.
+        </div>
+    </div>
+
+    <div class="weather-alert" id="weather-alert">
+        <strong><i class="fas fa-exclamation-circle"></i> Weather Alert:</strong>
+        <span id="weather-warning"></span>
+    </div>
+
+    <div class="grid-container" id="forecast-container">
+        <!-- Weather forecast items will be inserted here dynamically -->
+    </div>
+
+    <script src="static/weather.js"></script>
+</body>
+</html>
